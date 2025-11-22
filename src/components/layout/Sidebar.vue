@@ -1,7 +1,9 @@
 <script setup>
-import { useLorebook } from '@/composables/useLorebook'
+import { useLorebookStore } from '@/stores/lorebook'
+import { storeToRefs } from 'pinia'
 
-const { searchQuery, stats } = useLorebook()
+const lorebookStore = useLorebookStore()
+const { searchQuery, stats, lorebookName } = storeToRefs(lorebookStore)
 
 // Emit event to open the modal in "Create" mode
 const emit = defineEmits(['open-create'])
@@ -23,16 +25,12 @@ const emit = defineEmits(['open-create'])
     <div class="glass-panel rounded-xl p-4 space-y-2">
       <div class="flex justify-between items-end mb-1">
         <h3 class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Active Book</h3>
-        <button class="text-accent hover:text-accent-hover text-[10px] font-bold uppercase tracking-wider" onclick="alert('New Lorebook Logic Placeholder')">+ New</button>
       </div>
       
       <div class="flex gap-2">
-        <select id="lorebookSelect" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-medium cursor-pointer appearance-none">
-          <option value="1">Main Campaign (V3)</option>
-          <option value="2">Character Database</option>
-          <option value="3">World History</option>
-          <option value="4">Spell Registry</option>
-        </select>
+        <div class="glass-input w-full px-3 py-2 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-200">
+          {{ lorebookName || 'No Lorebook Selected' }}
+        </div>
       </div>
     </div>
     <!-- Stats Dashboard -->

@@ -1,38 +1,69 @@
-# loremaster
+<div align="center">
+  <img src="public/logo.png" alt="Loremaster Logo" width="120" />
+  <h1>Loremaster</h1>
+  <p>
+    <strong>Master your world's knowledge with style.</strong><br>
+    A modern, beautiful, and lightning-fast editor for your AI character lorebooks.
+  </p>
 
-This template should help get you started developing with Vue 3 in Vite.
+  <p>
+    <a href="#features">Features</a> •
+    <a href="#getting-started">Getting Started</a> •
+    <a href="#tech-stack">Tech Stack</a>
+  </p>
+</div>
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🧙‍♂️ What is this?
 
-## Recommended Browser Setup
+**Lorebook Manager** (or simply *Loremaster*) is a specialized tool designed for creators, writers, and prompt engineers. It allows you to create, edit, and organize "lorebooks" (structured knowledge bases) often used in AI text generation and roleplay.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+Gone are the days of editing massive JSON files by hand. Loremaster provides a sleek, glass-morphism inspired UI to manage your entries, keys, and logic effortlessly.
 
-## Customize configuration
+## ✨ Features
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+-   **🎨 Beautiful UI:** Built with a modern aesthetic, featuring glass panels, smooth animations, and full Dark Mode support.
+-   **⚡ Lightning Fast:** Powered by Vite and Vue 3 for instant interactions.
+-   **🔍 Smart Search:** Filter through hundreds of entries instantly.
+-   **📂 Import/Export:** Seamlessly import existing JSON lorebooks and export your work when you're done.
+-   **📊 Live Stats:** Keep track of your token usage and entry counts in real-time.
 
-## Project Setup
+## 🚀 Getting Started
 
-```sh
-bun install
-```
+Prerequisites: [Node.js](https://nodejs.org/) (v16+)
 
-### Compile and Hot-Reload for Development
+1.  **Clone:**
+    ```bash
+    git clone https://github.com/Sillyfrogster/loremaster.git
+    cd loremaster
+    ```
 
-```sh
-bun dev
-```
+2.  **Install:**
+    ```bash
+    bun i
+    ```
 
-### Compile and Minify for Production
+3.  **Run (Dev Mode):**
+    ```bash
+    bun dev
+    ```
 
-```sh
-bun run build
-```
+4.  **Run (Production):**
+    ```bash
+    bun build
+    ```
+
+## 🛠 Tech Stack
+
+*   **Core:** Vue 3 (Composition API)
+*   **State:** Pinia
+*   **Styling:** Tailwind CSS
+*   **Bundler:** Vite
+*   **Icons:** Heroicons
+
+---
+
+<div align="center">
+  <sub>Crafted with 💙 by Sillyfrogster</sub>
+</div>

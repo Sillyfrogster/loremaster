@@ -1,67 +1,59 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
-import { useTheme } from '@/composables/useTheme'
+import { ref, onMounted } from 'vue'
 
-const canvasRef = ref(null)
-const { isDark } = useTheme()
-let ctx = null
-let animationFrame = null
-const particles = []
+const particles = ref([])
 const runes = "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ"
 
-// Canvas Logic
-class Particle {
-  constructor(w, h) { this.reset(w, h) }
-  reset(w, h) {
-    this.char = runes[Math.floor(Math.random() * runes.length)]
-    this.x = Math.random() * w
-    this.y = Math.random() * h
-    this.size = Math.random() * 12 + 8
-    this.speed = Math.random() * 0.3 + 0.1
-    this.opacity = Math.random() * 0.3
-  }
-  update(h) {
-    this.y -= this.speed
-    if (this.y < -20) this.y = h + 20
-  }
-  draw(ctx, isDarkMode) {
-    ctx.fillStyle = isDarkMode ? '#8b5cf6' : '#64748b'
-    ctx.font = `${this.size}px sans-serif`
-    ctx.globalAlpha = isDarkMode ? this.opacity : this.opacity * 0.5
-    ctx.fillText(this.char, this.x, this.y)
-  }
-}
-
 const init = () => {
-  const canvas = canvasRef.value
-  if(!canvas) return
-  ctx = canvas.getContext('2d')
+  // Create a stable set of particles
+  const count = 30 // Reduced count for DOM, but sufficient for effect
+  const newParticles = []
   
-  const resize = () => {
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-  }
-  window.addEventListener('resize', resize)
-  resize()
-
-  // Init Particles
-  for(let i=0; i<50; i++) particles.push(new Particle(canvas.width, canvas.height))
-
-  const animate = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    particles.forEach(p => {
-      p.update(canvas.height)
-      p.draw(ctx, isDark.value)
+  for (let i = 0; i < count; i++) {
+    newParticles.push({
+      id: i,
+      char: runes[Math.floor(Math.random() * runes.length)],
+      style: {
+        left: `${Math.random() * 100}%`,
+        fontSize: `${Math.random() * 1.5 + 0.8}rem`,
+        animationDuration: `${Math.random() * 20 + 15}s`, // 15-35s
+        animationDelay: `${Math.random() * -30}s`, // Start at random points in cycle
+        opacity: Math.random() * 0.3 + 0.05
+      }
     })
-    animationFrame = requestAnimationFrame(animate)
   }
-  animate()
+  particles.value = newParticles
 }
 
 onMounted(init)
-onUnmounted(() => cancelAnimationFrame(animationFrame))
 </script>
 
 <template>
-  <canvas ref="canvasRef" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-10 dark:opacity-40 transition-opacity duration-500"></canvas>
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div 
+      v-for="p in particles" 
+      :key="p.id"
+      class="absolute top-[110%] text-slate-500 dark:text-violet-500/40 select-none animate-float will-change-transform"
+      :style="p.style"
+    >
+      {{ p.char }}
+    </div>
+  </div>
 </template>
+
+<style scoped>
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-120vh) rotate(45deg);
+  }
+}
+
+.animate-float {
+  animation-name: float;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+</style>

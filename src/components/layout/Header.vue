@@ -1,14 +1,43 @@
 <script setup>
 import { useTheme } from '@/composables/useTheme'
 import { ref } from 'vue'
+import { useToastStore } from '@/stores/toast'
+import { useLorebookStore } from '@/stores/lorebook'
 
+const useToast = useToastStore()
+const lorebookStore = useLorebookStore()
+const { loadLorebook } = lorebookStore
 const loreBook = ref(null)
 
 const triggerImport = () => {
   if (loreBook.value) {
     loreBook.value.click()
   }
-  console.log(loreBook);
+}
+
+const handleUpload = (event) => {
+  let file = event.target.files?.[0]
+  let type = "application/json"
+
+  if(!file) return useToast.addToast('No file selected.', 'error');
+  if(file.type != type) return useToast.addToast('Please select a lorebook. (JSON)', 'error');
+
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    try {
+      let parsedFile = JSON.parse(e.target.result)
+      if(!parsedFile.entries) {
+        return useToast.addToast('Invalid Lorebook.', 'error')
+      }
+      // Load the lorebook
+      loadLorebook(parsedFile)
+      useToast.addToast('Lorebook imported successfully!', 'success')
+    } catch (err) {
+      useToast.addToast('Error parsing JSON.', 'error')
+    }
+  }
+  reader.readAsText(file)
+  event.target.value = ''
 }
 // Destructure the theme logic
 const { isDark, toggleTheme } = useTheme()
@@ -20,10 +49,8 @@ const { isDark, toggleTheme } = useTheme()
       
       <!-- Logo Section -->
       <div class="flex items-center gap-4">
-        <div class="w-9 h-9 rounded-xl bg-accent flex items-center justify-center shadow-lg text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-            <path d="M11.25 4.533A9.707 9.707 0 006 3.75a9.753 9.753 0 00-3.25.557.75.75 0 00-.455.718v8.714a.75.75 0 00.455.718A9.754 9.754 0 016 15a9.754 9.754 0 015.25-1.533V4.533zm1.5 0c1.636 0 3.136.362 4.5.973V13.467A9.754 9.754 0 0012 15a9.754 9.754 0 00-5.25-1.533v-8.96c1.364-.61 2.864-.973 4.5-.973zm1.5-.973A9.753 9.753 0 0118 3.75c1.494 0 2.87.322 4.106.902.298.14.494.444.494.777v10.446c0 .78-.922 1.333-1.636.98a9.74 9.74 0 01-2.964-1.02V6.033a.75.75 0 00-.45-.718 8.21 8.21 0 00-3.55-.755z" />
-          </svg>
+        <div class="w-10 h-10 flex items-center justify-center">
+          <img src="/logo.png" alt="Logo" class="w-full h-full object-contain drop-shadow-md" />
         </div>
         <div class="flex flex-col">
           <h1 class="font-bold text-base tracking-tight text-slate-900 dark:text-white">Lorebook<span class="text-accent">Manager</span></h1>
@@ -44,7 +71,7 @@ const { isDark, toggleTheme } = useTheme()
         </button>
 
         <!-- hidden file selector -->
-        <input ref="loreBook" type="file" accept=".json, application/json" class="hidden"/>
+        <input ref="loreBook" type="file" accept=".json, application/json" class="hidden" @change="handleUpload"/>
 
         <!-- import -->
         <button @click="triggerImport" class="h-9 px-3 rounded-lg bg-slate-200 dark:bg-white/5 hover:bg-slate-300 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 font-medium transition-all flex items-center gap-2 text-xs border border-transparent dark:border-white/5">
