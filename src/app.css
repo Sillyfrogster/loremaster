@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* Custom theme tokens */
+@theme {
+  --color-bg-900: #020617;
+  --color-bg-950: #020617;
+  --color-light-50: #f9fafb;
+  --color-light-100: #e2e8f0;
+  --color-light-300: #cbd5e1;
+  --color-accent: #38bdf8;
+}
+
+/* (Optional) Dark mode variant using .dark on html/body */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Global Transitions */
+body,
+div,
+section,
+header,
+aside,
+main,
+button,
+input,
+textarea,
+select {
+  @apply transition-colors duration-300 ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
+.dark ::-webkit-scrollbar-thumb { background: #334155; }
+::-webkit-scrollbar-thumb:hover { @apply bg-accent; }
+
+/* Glass Panel Utility Class */
+.glass-panel {
+  @apply bg-white/70 backdrop-blur-md border border-black/5 shadow-[0_4px_20px_rgba(0,0,0,0.05)];
+}
+.dark .glass-panel {
+  @apply bg-bg-900/60 border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)];
+}
+
+/* Glass Input Utility Class */
+.glass-input {
+  @apply bg-light-100 border border-light-300 text-bg-900
+    focus:bg-white focus:border-accent focus:ring-2 focus:ring-accent/20
+    outline-none transition-all;
+}
+.dark .glass-input {
+  @apply bg-bg-950/50 border-white/10 text-light-50
+    focus:bg-bg-950/80 focus:ring-accent/50;
+}
