@@ -32,7 +32,7 @@ watch(() => props.entryData, (newData) => {
       content: '',
       keyStr: '',
       keySecStr: '',
-      enabled: true,
+      disabled: false,
       constant: false,
       selective: true,
       caseSensitive: false,

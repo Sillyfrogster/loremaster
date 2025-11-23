@@ -19,7 +19,7 @@ const emit = defineEmits(['open-create'])
           <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
         </svg>
         <!-- v-model connects to the Composable's searchQuery state -->
-        <input v-model="searchQuery" type="text" placeholder="Search database..." class="w-full bg-transparent text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-600 text-xs font-medium py-2.5 pl-9 pr-3 rounded-lg outline-none focus:bg-slate-100 dark:focus:bg-white/5 transition-colors">
+        <input v-model="searchQuery" type="text" placeholder="Search for entries..." class="w-full bg-transparent text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-600 text-xs font-medium py-2.5 pl-9 pr-3 rounded-lg outline-none focus:bg-slate-100 dark:focus:bg-white/5 transition-colors">
       </div>
     </div>
     <div class="glass-panel rounded-xl p-4 space-y-2">
@@ -36,7 +36,7 @@ const emit = defineEmits(['open-create'])
     <!-- Stats Dashboard -->
     <div class="glass-panel rounded-xl p-5 space-y-4">
       <h3 class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider flex items-center gap-2">
-        Database Integrity
+        Lorebook Info
       </h3>
       
       <div class="grid grid-cols-2 gap-3">

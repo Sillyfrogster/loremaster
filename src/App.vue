@@ -108,14 +108,25 @@ const handleDelete = (uid) => {
 
         <main class="flex-1 overflow-y-auto p-6 pl-0 scroll-smooth">
           <!-- Grid -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 pb-20">
-            <LoreCard 
-              v-for="entry in filteredEntries" 
-              :key="entry.uid" 
-              :data="entry"
-              @click="openEdit"
-            />
-          </div>
+          <Transition
+            enter-active-class="transition duration-300 ease-out delay-150"
+            enter-from-class="opacity-0 translate-y-4"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition duration-200 ease-in"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 translate-y-4"
+            mode="out-in"
+          >
+            <!-- Key the grid to the currentLorebookId so it re-renders/animates on switch -->
+            <div :key="lorebookStore.currentLorebookId" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 pb-20">
+              <LoreCard 
+                v-for="entry in filteredEntries" 
+                :key="entry.uid" 
+                :data="entry"
+                @click="openEdit"
+              />
+            </div>
+          </Transition>
         </main>
       </template>
       <WelcomeScreen v-else />

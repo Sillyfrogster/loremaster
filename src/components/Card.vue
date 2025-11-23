@@ -31,14 +31,14 @@ const remainingKeysCount = computed(() => Math.max(0, props.data.key.length - 5)
     @click="$emit('click', data.uid)"
     :class="[
       'lore-card relative glass-panel p-5 rounded-xl cursor-pointer group flex flex-col h-56 border transition-all',
-      !data.enabled 
+      data.disabled
         ? 'opacity-60 grayscale border-slate-300 dark:border-slate-700' 
         : 'border-slate-200 dark:border-slate-700 hover:border-accent dark:hover:border-accent'
     ]"
   >
     <!-- Top Indicator Bar -->
     <div 
-      :class="['absolute top-0 left-0 w-full h-1 opacity-80 rounded-t-xl', data.constant ? 'bg-gold' : (data.enabled ? 'bg-accent' : 'bg-slate-400')]"
+      :class="['absolute top-0 left-0 w-full h-1 opacity-80 rounded-t-xl', data.constant ? 'bg-gold' : (data.disabled ? 'bg-slate-400' : 'bg-accent')]"
     ></div>
     
     <!-- Header -->
