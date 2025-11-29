@@ -33,7 +33,7 @@ const handleImport = (event) => {
       if(!parsedFile.entries) {
         return toastStore.addToast('Invalid Lorebook.', 'error')
       }
-      loadLorebook(parsedFile)
+      loadLorebook(parsedFile, file.name.replace(/\.json$/i, ''))
       toastStore.addToast('Lorebook imported successfully!', 'success')
     } catch (err) {
       toastStore.addToast('Error parsing JSON.', 'error')

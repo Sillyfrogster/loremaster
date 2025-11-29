@@ -14,28 +14,28 @@ export default {
       colors: {
         // Dark Mode Colors (Obsidian)
         bg: {
-          950: '#020617',
-          900: '#0f172a',
-          800: '#1e293b',
+          950: '#050812',
+          900: '#0b1224',
+          800: '#111b30',
         },
         // Light Mode Colors (Clean Slate)
         light: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
+          50: '#f6f7fb',
+          100: '#ebedf3',
+          200: '#dfe3ec',
+          300: '#cbd2df',
           surface: '#ffffff',
         },
         accent: {
-          DEFAULT: '#8b5cf6', // Violet
-          hover: '#7c3aed',
-          light: '#a78bfa',
-          dim: 'rgba(139, 92, 246, 0.1)',
-          glow: 'rgba(139, 92, 246, 0.5)'
+          DEFAULT: '#5dc2b1', // Muted seafoam
+          hover: '#4aa795',
+          light: '#7ad7c9',
+          dim: 'rgba(93, 194, 177, 0.12)',
+          glow: 'rgba(93, 194, 177, 0.45)'
         },
         gold: {
-          DEFAULT: '#fbbf24',
-          dim: 'rgba(251, 191, 36, 0.1)'
+          DEFAULT: '#e8c268',
+          dim: 'rgba(232, 194, 104, 0.14)'
         }
       },
       animation: {

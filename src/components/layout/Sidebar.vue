@@ -62,7 +62,7 @@ const emit = defineEmits(['open-create'])
       </div>
     </div>
 
-    <button @click="$emit('open-create')" class="mt-auto w-full py-3 rounded-xl bg-gradient-to-r from-accent to-violet-600 text-white font-bold shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
+    <button @click="$emit('open-create')" class="mt-auto w-full py-3 rounded-xl bg-accent hover:bg-accent-hover text-white font-bold shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.02] active:scale-[0.98] transition-all border border-accent/30 flex items-center justify-center gap-2 group">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 group-hover:rotate-90 transition-transform">
         <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
       </svg>

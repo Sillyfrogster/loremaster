@@ -62,7 +62,7 @@ const handleDelete = (uid) => {
 
 <template>
   <!-- Main Container -->
-  <div class="h-screen flex flex-col overflow-hidden font-sans text-sm bg-light-50 text-slate-800 dark:bg-bg-950 dark:text-slate-200 selection:bg-accent selection:text-white">
+  <div class="app-shell h-screen flex flex-col overflow-hidden font-sans text-sm bg-light-50 text-slate-800 dark:bg-bg-950 dark:text-slate-200 selection:bg-accent selection:text-white">
     
     <TheHeader />
 

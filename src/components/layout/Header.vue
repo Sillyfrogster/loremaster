@@ -34,7 +34,7 @@ const handleUpload = (event) => {
         return useToast.addToast('Invalid Lorebook.', 'error')
       }
       // Load the lorebook
-      loadLorebook(parsedFile, file.name)
+      loadLorebook(parsedFile, file.name.replace(/\.json$/i, ''))
       useToast.addToast('Lorebook imported successfully!', 'success')
     } catch (err) {
       useToast.addToast('Error parsing JSON.', 'error')
@@ -103,6 +103,11 @@ const { isDark, toggleTheme } = useTheme()
             <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
           </svg>
           Export
+        </button>
+
+        <!-- Login -->
+        <button class="h-9 px-4 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-xs hover:opacity-90 transition-all shadow-md">
+          Login
         </button>
       </div>
     </div>

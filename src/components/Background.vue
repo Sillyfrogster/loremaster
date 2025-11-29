@@ -30,10 +30,11 @@ onMounted(init)
 
 <template>
   <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute inset-0 gradient-veil"></div>
     <div 
       v-for="p in particles" 
       :key="p.id"
-      class="absolute top-[110%] text-slate-500 dark:text-violet-500/40 select-none animate-float will-change-transform"
+      class="absolute top-[110%] text-slate-500 dark:text-accent/40 select-none animate-float will-change-transform"
       :style="p.style"
     >
       {{ p.char }}
@@ -55,5 +56,20 @@ onMounted(init)
   animation-name: float;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+.gradient-veil {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(93, 194, 177, 0.12), transparent 32%),
+    radial-gradient(circle at 82% 16%, rgba(98, 129, 210, 0.12), transparent 34%),
+    radial-gradient(circle at 60% 78%, rgba(255, 255, 255, 0.08), transparent 36%);
+  transition: background 320ms ease;
+}
+
+:global(.dark) .gradient-veil {
+  background:
+    radial-gradient(circle at 22% 18%, rgba(93, 194, 177, 0.11), transparent 30%),
+    radial-gradient(circle at 78% 14%, rgba(88, 119, 196, 0.12), transparent 32%),
+    radial-gradient(circle at 64% 80%, rgba(12, 22, 45, 0.7), transparent 38%);
 }
 </style>
