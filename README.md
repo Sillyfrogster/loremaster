@@ -1,69 +1,103 @@
-<div align="center">
-  <img src="public/logo.png" alt="Loremaster Logo" width="120" />
-  <h1>Loremaster</h1>
-  <p>
-    <strong>Master your world's knowledge with style.</strong><br>
-    A modern, beautiful, and lightning-fast editor for your AI character lorebooks.
-  </p>
+# Loremaster
 
-  <p>
-    <a href="#features">Features</a> •
-    <a href="#getting-started">Getting Started</a> •
-    <a href="#tech-stack">Tech Stack</a>
-  </p>
-</div>
+**Loremaster** is a lorebook tool built for beginners and advanced users alike. It brings an ease to lorebook creation / management. 
 
----
+## Tech Stack
 
-## 🧙‍♂️ What is this?
+### Frontend
+- **Framework:** [Vue 3](https://vuejs.org/) (Composition API)
+- **State Management:** [Pinia](https://pinia.vuejs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Runtime:** [Node.js](https://nodejs.org/) (Bun supported)
 
-**Lorebook Manager** (or simply *Loremaster*) is a specialized tool designed for creators, writers, and prompt engineers. It allows you to create, edit, and organize "lorebooks" (structured knowledge bases) often used in AI text generation and roleplay.
+### Backend
+- **Framework:** [FastAPI](https://fastapi.tiangolo.com/)
+- **Language:** Python 3.10+
+- **Package Manager:** [uv](https://github.com/astral-sh/uv) (recommended)
 
-Gone are the days of editing massive JSON files by hand. Loremaster provides a sleek, glass-morphism inspired UI to manage your entries, keys, and logic effortlessly.
+## Getting Started
 
-## ✨ Features
+### Prerequisites
 
--   **🎨 Beautiful UI:** Built with a modern aesthetic, featuring glass panels, smooth animations, and full Dark Mode support.
--   **⚡ Lightning Fast:** Powered by Vite and Vue 3 for instant interactions.
--   **🔍 Smart Search:** Filter through hundreds of entries instantly.
--   **📂 Import/Export:** Seamlessly import existing JSON lorebooks and export your work when you're done.
--   **📊 Live Stats:** Keep track of your token usage and entry counts in real-time.
+- **Node.js:** v20+ (or Bun)
+- **Python:** v3.10+
 
-## 🚀 Getting Started
+### Installation
 
-Prerequisites: [Node.js](https://nodejs.org/) (v16+)
-
-1.  **Clone:**
+1.  **Install Frontend Dependencies:**
     ```bash
-    git clone https://github.com/Sillyfrogster/loremaster.git
-    cd loremaster
+    bun install
+    # or 'npm install'
     ```
 
-2.  **Install:**
+2.  **Install Backend Dependencies:**
+    Navigate to the `backend/` directory and install dependencies.
     ```bash
-    bun i
+    cd backend
+    uv sync
+    # or 'pip install -r requirements.txt' if you export them
     ```
 
-3.  **Run (Dev Mode):**
-    ```bash
-    bun dev
-    ```
+### Configuration
 
-4.  **Run (Production):**
-    ```bash
-    bun build
-    ```
+Create a `.env` file in the `backend/` directory to configure the optional Discord authentication. You can copy `.env.example`.
 
-## 🛠 Tech Stack
+```ini
+# backend/.env
+DISCORD_CLIENT_ID=your_client_id
+DISCORD_CLIENT_SECRET=your_client_secret
+DISCORD_REDIRECT_URI=http://localhost:5173/auth/callback
+```
 
-*   **Core:** Vue 3 (Composition API)
-*   **State:** Pinia
-*   **Styling:** Tailwind CSS
-*   **Bundler:** Vite
-*   **Icons:** Heroicons
+### Running the Project
 
----
+You can run the frontend and backend independently or concurrently.
 
-<div align="center">
-  <sub>Crafted with 💙 by Sillyfrogster</sub>
-</div>
+**Full Stack (Recommended):**
+```bash
+bun run dev:full
+```
+- **Frontend:** http://localhost:5173
+- **Backend:** http://127.0.0.1:5330
+
+**Frontend Only:**
+```bash
+bun run dev
+```
+
+**Backend Only:**
+```bash
+cd backend
+uv run python -X utf8 -m fastapi dev src/main.py --host 127.0.0.1 --port 5330
+```
+
+### Building for Production
+
+To build the frontend assets for deployment:
+
+```bash
+bun run build
+```
+The artifacts will be generated in the `dist/` directory.
+
+## Project Structure
+
+```
+loremaster/
+├── src/                # Frontend
+│   ├── components/     # UI Components
+│   ├── stores/         # Pinia State Stores
+│   ├── services/       # API Clients
+│   └── views/          # Route Views
+├── backend/            # FastAPI Backend
+│   └── src/
+│       ├── api/        # API Routes & Dependencies
+│       ├── services/   # Business Logic
+│       └── models.py   # Pydantic Models
+├── public/             # Static Assets
+└── dist/               # Build Artifacts
+```
+## License
+
+MIT

@@ -1,22 +1,25 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-export const useToastStore = defineStore('toast', {
-  state: () => ({
-    toasts: [],
-    nextId: 0,
-  }),
-  actions: {
-    addToast(message, type = 'info', duration = 3000, position = 'top-right') {
-      const id = this.nextId++;
-      this.toasts.push({ id, message, type, duration, position });
+export const useToastStore = defineStore('toast', () => {
+  const toasts = ref([])
+  const nextId = ref(0)
 
-      // Automatically remove toast after its duration
+  const removeToast = (id) => {
+    toasts.value = toasts.value.filter((t) => t.id !== id)
+  }
+
+  const addToast = (message, type = 'info', duration = 3000, position = 'top-right') => {
+    const id = nextId.value++
+    toasts.value.push({ id, message, type, duration, position })
+
+    if (duration > 0) {
       setTimeout(() => {
-        this.removeToast(id);
-      }, duration);
-    },
-    removeToast(id) {
-      this.toasts = this.toasts.filter((toast) => toast.id !== id);
-    },
-  },
-});
+        removeToast(id)
+      }, duration)
+    }
+  }
+
+  return { toasts, addToast, removeToast }
+})
+

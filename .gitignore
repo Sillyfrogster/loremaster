@@ -12,7 +12,6 @@ node_modules
 dist
 dist-ssr
 coverage
-backend
 *.local
 
 # Editor directories and files
@@ -35,3 +34,9 @@ bun.lock
 
 # Vitest
 __screenshots__/
+
+#python stuff
+.venv
+__pycache__
+.env
+uv.lock
